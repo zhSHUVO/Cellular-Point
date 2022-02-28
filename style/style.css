@@ -1,0 +1,25 @@
+body {
+    background-color: #d8dee9;
+    color: #2e3440;
+}
+
+.search-button {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    background-color: #eceff4;
+}
+
+.search-bar {
+    outline: none;
+    background: #eceff4;
+}
+
+button:hover {
+    background: #7584a3;
+}
+
+.card {
+    background-color: #eceff4;
+    border-radius: 10px;
+}
