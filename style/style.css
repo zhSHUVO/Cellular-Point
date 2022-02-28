@@ -35,3 +35,7 @@ button:hover {
 .detail-button:hover {
     color: #6a758a;
 }
+
+span {
+    font-weight: 900;
+}
