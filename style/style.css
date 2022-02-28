@@ -1,8 +1,9 @@
 body {
-    background-color: #d8dee9;
-    color: #2e3440;
+    background-color: #2e3440;
+    color: #d8dee9;
 }
 
+/* search  */
 .search-button {
     border-radius: 50%;
     height: 45px;
@@ -16,10 +17,21 @@ body {
 }
 
 button:hover {
-    background: #7584a3;
+    background: #4c566a;
 }
 
+/* display card */
 .card {
-    background-color: #eceff4;
-    border-radius: 10px;
+    background-color: #3b4252;
+    border-radius: 20px;
+    color: #d8dee9;
+}
+
+.detail-button {
+    background-color: #2e3440;
+    color: #d8dee9;
+}
+
+.detail-button:hover {
+    color: #6a758a;
 }
