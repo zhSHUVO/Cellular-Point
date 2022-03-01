@@ -18,6 +18,10 @@ const searchPhone = () => {
 const toggleSpinner = (displyStyle) => {
     document.getElementById("spinner").style.display = displyStyle;
 };
+// see more
+const toggleMore = (displyStyle) => {
+    document.getElementById("see-more").style.display = displyStyle;
+};
 
 // display search result
 const displaySearchResult = (phones) => {
@@ -58,7 +62,14 @@ const displaySearchResult = (phones) => {
         `;
             searchResult.appendChild(div);
         });
+
+        // showing show more button according to the phone display
         toggleSpinner("none");
+        if (phones.length > 20) {
+            toggleMore("block");
+        } else {
+            toggleMore("none");
+        }
     }
 };
 
@@ -74,21 +85,36 @@ const loadPhoneDetail = (phoneId) => {
 const displayPhoneDetail = (phone) => {
     // cleaning previous output
     phoneDetails.innerHTML = "";
-    console.log(typeof phone);
 
-    // others details
-    let others = JSON.parse(JSON.stringify(phone.data.others));
-    console.log(others);
+    // variable for other infos
+    let wlan = "no info available";
+    let bluetooth = "no info available";
+    let gps = "no info available";
+    let nfc = "no info available";
+    let radio = "no info available";
+    let usb = "no info available";
+
+    if (phone.data.others != null) {
+        others = JSON.parse(JSON.stringify(phone.data.others));
+        wlan = others.WLAN;
+        bluetooth = others.Bluetooth;
+        gps = others.GPS;
+        nfc = others.NFC;
+        radio = others.Radio;
+        usb = others.USB;
+    }
 
     // release date check
     let release = phone.data.releaseDate;
     if (release == "") {
         release = "No release date found!";
     }
+
+    // display to the screen
     const div = document.createElement("div");
     div.classList.add("col", "d-flex", "justify-content-center");
     div.innerHTML = `
-            <div  class="card text-center w-50">
+            <div  class="card text-center px-3">
                 <img
                     src="${phone.data.image}"
                     class="card-img-top w-50 mx-auto p-3 "
@@ -103,7 +129,7 @@ const displayPhoneDetail = (phone) => {
                     <p class="card-text"><span>Display:</span> ${phone.data.mainFeatures.displaySize}</p>
                     <p class="card-text"><span>Chipset:</span> ${phone.data.mainFeatures.chipSet}</p>
                     <p class="card-text"><span>Sensors Data:</span> ${phone.data.mainFeatures.sensors}</p>
-                    <p class="card-text"><span>Others:</span>WLAN: ${others.WLAN},<br>Bluetooth: ${others.Bluetooth},<br>GPS: ${others.GPS},<br>NFC: ${others.NFC},<br>Radio: ${others.Radio},<br>USB: ${others.USB}</p>
+                    <p class="card-text"><span>Others:</span><br>WLAN: ${wlan}<br>Bluetooth: ${bluetooth}<br>GPS: ${gps}<br>NFC: ${nfc}<br>Radio: ${radio}<br>USB: ${usb}</p>
                 </div>
             </div>
         `;

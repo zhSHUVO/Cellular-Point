@@ -25,6 +25,11 @@ button:hover {
     display: none;
 }
 
+/* see more */
+#see-more {
+    display: none;
+}
+
 /* display card */
 .card {
     background-color: #3b4252;
