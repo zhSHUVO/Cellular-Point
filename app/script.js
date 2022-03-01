@@ -1,6 +1,7 @@
 // global
 const searchResult = document.getElementById("phone-card");
 const phoneDetails = document.getElementById("detail-card");
+const notFound = document.getElementById("not-found");
 
 // getting phone data
 const searchPhone = () => {
@@ -18,11 +19,22 @@ const displaySearchResult = (phones) => {
     // cleaning previous output
     phoneDetails.innerHTML = "";
     searchResult.innerHTML = "";
-    phones.forEach((phone) => {
-        // console.log(phone);
+    notFound.innerHTML = "";
+
+    // error checking for invalid search
+    if (phones.length == 0) {
+        console.log("not found");
         const div = document.createElement("div");
-        div.classList.add("col", "d-flex", "justify-content-center");
         div.innerHTML = `
+        <p>No Phone Found! Recheck your seach term and try again.</p>
+        `;
+        notFound.appendChild(div);
+    } else {
+        phones.slice(0, 20).forEach((phone) => {
+            console.log(phone);
+            const div = document.createElement("div");
+            div.classList.add("col", "d-flex", "justify-content-center");
+            div.innerHTML = `
             <div  class="card text-center w-75">
                 <img
                     src="${phone.image}"
@@ -36,8 +48,9 @@ const displaySearchResult = (phones) => {
                 </div>
             </div>
         `;
-        searchResult.appendChild(div);
-    });
+            searchResult.appendChild(div);
+        });
+    }
 };
 
 // getting single phone data
