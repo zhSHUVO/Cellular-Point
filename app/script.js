@@ -74,7 +74,11 @@ const loadPhoneDetail = (phoneId) => {
 const displayPhoneDetail = (phone) => {
     // cleaning previous output
     phoneDetails.innerHTML = "";
-    console.log(phone);
+    console.log(typeof phone);
+
+    // others details
+    let others = JSON.parse(JSON.stringify(phone.data.others));
+    console.log(others);
 
     // release date check
     let release = phone.data.releaseDate;
@@ -99,6 +103,7 @@ const displayPhoneDetail = (phone) => {
                     <p class="card-text"><span>Display:</span> ${phone.data.mainFeatures.displaySize}</p>
                     <p class="card-text"><span>Chipset:</span> ${phone.data.mainFeatures.chipSet}</p>
                     <p class="card-text"><span>Sensors Data:</span> ${phone.data.mainFeatures.sensors}</p>
+                    <p class="card-text"><span>Others:</span>WLAN: ${others.WLAN},<br>Bluetooth: ${others.Bluetooth},<br>GPS: ${others.GPS},<br>NFC: ${others.NFC},<br>Radio: ${others.Radio},<br>USB: ${others.USB}</p>
                 </div>
             </div>
         `;
