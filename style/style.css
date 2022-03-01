@@ -20,6 +20,11 @@ button:hover {
     background: #4c566a;
 }
 
+/* spinner */
+#spinner {
+    display: none;
+}
+
 /* display card */
 .card {
     background-color: #3b4252;

@@ -14,12 +14,20 @@ const searchPhone = () => {
         .then((data) => displaySearchResult(data.data));
 };
 
+// spinner
+const toggleSpinner = (displyStyle) => {
+    document.getElementById("spinner").style.display = displyStyle;
+};
+
 // display search result
 const displaySearchResult = (phones) => {
     // cleaning previous output
     phoneDetails.innerHTML = "";
     searchResult.innerHTML = "";
     notFound.innerHTML = "";
+
+    // spinner
+    toggleSpinner("block");
 
     // error checking for invalid search
     if (phones.length == 0) {
@@ -50,6 +58,7 @@ const displaySearchResult = (phones) => {
         `;
             searchResult.appendChild(div);
         });
+        toggleSpinner("none");
     }
 };
 
@@ -66,6 +75,7 @@ const displayPhoneDetail = (phone) => {
     // cleaning previous output
     phoneDetails.innerHTML = "";
     console.log(phone);
+
     // release date check
     let release = phone.data.releaseDate;
     if (release == "") {
@@ -88,7 +98,7 @@ const displayPhoneDetail = (phone) => {
                     <p class="card-text"><span>Memory:</span> ${phone.data.mainFeatures.memory}</p>
                     <p class="card-text"><span>Display:</span> ${phone.data.mainFeatures.displaySize}</p>
                     <p class="card-text"><span>Chipset:</span> ${phone.data.mainFeatures.chipSet}</p>
-                    <p class="card-text"><span>Sensors:</span> ${phone.data.mainFeatures.sensors}</p>
+                    <p class="card-text"><span>Sensors Data:</span> ${phone.data.mainFeatures.sensors}</p>
                 </div>
             </div>
         `;
